@@ -181,8 +181,14 @@ function onKeyDown(event) {
 
 function onFrame(event) {
     // each frame, change fill color of each circle by 1
-    circles.forEach(function(circle) {
+    circles.forEach(function(circle, i) {
         circle.fillColor.hue += 1; 
         circle.scale(.96);
+        if (circle.area < 1) {
+            circle.remove();
+            circles.splice(i, 1);
+            // i--;
+            console.log(circles);
+        }
     });
 }
